@@ -23,9 +23,6 @@ On tabularDataDrift:
     The last function compute detection accuracy for each combination of dimensionality reduction and statistical test.
     An instance is correctly detected if the results of the tests are above/below given thresholds.
 
-
-    thresholds is the notebook where thresholds for detection accuracy are computed. They are gotten by performing same techniques of drift detection on batches of the dataset. 
-
     In Utils there are the used functions. 
 
     In DriftSimulation there are function to simulate gaussian and linear drift.
@@ -44,7 +41,7 @@ On imageDataDrift
     Both source and drifted data are then pre-processed through the application of a black mask, by resizing them and by applying a pre-trained resnet.
     In addition to this thresholds are computed for each combination of dimensionality reduction technique and statistical test. 
     They are obtained by applying metrics on permutation of batches of source data. Threshold value is defined as the 5-th percentile of such results.
-    Thresholds are then printed. Thresholds are computed for metrics that reduce dataframes to both 2 and 6 dimensions.
+    Thresholds are then printed. 
     
     In dev_test metrics are applied to development data. In particular metrics test if source data is different from synthetic drifted data.
     In this file investigation is done about how many dimensions it would be good to reduce the dataframe before applying tests.
