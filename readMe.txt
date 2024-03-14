@@ -13,8 +13,6 @@ On tabularDataDrift:
     Statistical tests used are: t test, ks test, KL divergence on single components, MMD on whole reduced dataset. Tests are performed between test set and drifted vaildation set. 
     Same tests are performed also on test set and validation set in order to have a reference for the no-drift case.
 
-    testResult is the file where the results of the statistics are saved as csv file.
-    extended file has data with more variety of parameters value but only a fixed seed.
 
     plotResult is the notebook where results are investigated. 
     The first plot is an heatmap that shows values of fixed test at fixed seeds and dimensionality reduction at varying of drift parameters.
@@ -25,12 +23,8 @@ On tabularDataDrift:
     The last function compute detection accuracy for each combination of dimensionality reduction and statistical test.
     An instance is correctly detected if the results of the tests are above/below given thresholds.
 
-    Results of detection accuracy  are printed in the file detectionAccuracy.txt
 
     thresholds is the notebook where thresholds for detection accuracy are computed. They are gotten by performing same techniques of drift detection on batches of the dataset. 
-
-    Thresholds results are printed on threshold.txt file.
-
 
     In Utils there are the used functions. 
 
@@ -55,26 +49,14 @@ On imageDataDrift
     In dev_test metrics are applied to development data. In particular metrics test if source data is different from synthetic drifted data.
     In this file investigation is done about how many dimensions it would be good to reduce the dataframe before applying tests.
     As done in the paper 'Failing Loudly', the number k of reduced dimensions is defined as the minimumm number of components that with PCA preserves at least the 80% of variance of the data.
-    Results of such tests are saved in devResults csv files.
 
     In prod_test metrics are applied to production data. In particular metrics test if source data is different from real drifted data but also from data from a non-drifted day,
     in order to have a reference.
-    Results of such tests are saved in prodResults csv file.
 
     In result_analysis there is analysis, from the csv file with test results,about which metrics were able to detect correctly the drift and which detect erroneously a drift where in fact there is not.
     A metric is considered to detect a drift if the value it returns is extreamer than the corresponding threshold. 
-    In this way detection accuracy is computed and printed.
+    In this way detection accuracy is computed.
 
-    In the folder thresholds_and_results thresholds, test results and analysis of detection are stored. 
-    In particular there are two subfolders (2dim and 6dim) which cointains the same files with the only difference that all the computations are done with reductors that reduce to 2 dimensions or 6 dimensions.
-    The contained files are:
-        - thresholds: text file where thresholds are stored for each combination of dimensionality reduction techniques and statistical test
-        - devResults: csv file where results from metrics applied on development data are stored
-        - prodResult: csv file where results from metrics applied on production data are stored
-        - gaussian_accuracy: text file where detection accuracy for simulated gaussian drift  and false positive rate for val data are printed. 
-        - intensity_accuracy: text file where detection accuracy for simulated intensity drift and false positive rate for val data are printed.
-        - production_accuracy: text file where detection accuracy for real drifted production data and false positive rate for normal production data are printed.
-    
     In the folder Utils there are all the functions used in the notebooks.
         - utils_detectAcc: it cointains functions used to compute detection accuracy and false positive rate. They are: detect_row, detect_drift_kdim, print_detection_accuracy, read_threshold
         - utils_dimRedDef: it cointains functions used to define and initialize dimensionality reduction techniques. They are: find_dimensions_number, scale_dataset, init_scaler, AutoEncoders, 
